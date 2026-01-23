@@ -1,0 +1,21 @@
+// lib/models/bus_model.dart
+class Bus {
+  final String id;
+  final String name;
+  final String route;
+  final String departureTime;
+  final String arrivalTime;
+  final double price;
+  final int totalSeats;
+  final List<bool> seatAvailability; // true if available
+
+  Bus({
+    required this.id,
+    required this.name,
+    required this.route,
+    required this.departureTime,
+    required this.arrivalTime,
+    required this.price,
+    required this.totalSeats,
+    required this.seatAvailability,
+  });}
