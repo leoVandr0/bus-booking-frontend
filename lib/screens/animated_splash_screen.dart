@@ -22,7 +22,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 2500),
+      duration: const Duration(milliseconds: 4000),
       vsync: this,
     );
 
@@ -56,7 +56,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
 
     _controller.forward();
 
-    Timer(const Duration(milliseconds: 3500), () {
+    Timer(const Duration(milliseconds: 5500), () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
@@ -64,7 +64,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
             transitionsBuilder: (context, animation, secondaryAnimation, child) {
               return FadeTransition(opacity: animation, child: child);
             },
-            transitionDuration: const Duration(milliseconds: 800),
+            transitionDuration: const Duration(milliseconds: 1000),
           ),
         );
       }
@@ -169,53 +169,51 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
             ),
 
             // App Name and Tagline
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 100), // Push below the bus
-                  AnimatedBuilder(
-                    animation: _opacityAnimation,
-                    builder: (context, child) {
-                      return Opacity(
-                        opacity: _opacityAnimation.value,
-                        child: Transform.scale(
-                          scale: 0.8 + (0.2 * _textAnimation.value),
-                          child: Column(
-                            children: [
-                              Text(
-                                "BUS GO",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 48,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 4,
-                                ),
-                              ),
-                              Container(
-                                width: 60,
-                                height: 4,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                "Your Journey, Simplified",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  color: Colors.white.withOpacity(0.8),
-                                  letterSpacing: 1.2,
-                                ),
-                              ),
-                            ],
+            Positioned(
+              bottom: size.height * 0.15,
+              left: 0,
+              right: 0,
+              child: AnimatedBuilder(
+                animation: _opacityAnimation,
+                builder: (context, child) {
+                  return Opacity(
+                    opacity: _opacityAnimation.value,
+                    child: Transform.scale(
+                      scale: 0.8 + (0.2 * _textAnimation.value),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "BUS GO",
+                            style: GoogleFonts.poppins(
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              letterSpacing: 4,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                          Container(
+                            width: 60,
+                            height: 4,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            "Your Journey, Simplified",
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              color: Colors.white.withOpacity(0.8),
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             
